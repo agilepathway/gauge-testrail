@@ -22,3 +22,8 @@ RUN if [ "${INSTALL_MAVEN}" = "true" ]; then su vscode -c "source /usr/local/sdk
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+
+# Make sure gpg is available to git, for signing commits
+RUN git config --global gpg.program "$(which gpg)" && \
+    # Set Visual Studio Code as the git editor
+    git config --global core.editor "code --wait"
